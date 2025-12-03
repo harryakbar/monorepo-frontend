@@ -25,6 +25,7 @@ function App() {
         if (!data.ok) {
           throw new Error("Network response was not ok");
         }
+
         const jsonData = await data.json();
         setData(jsonData.data);
       } catch (error: any) {
