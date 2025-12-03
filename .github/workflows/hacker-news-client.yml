@@ -5,10 +5,10 @@ on:
     branches:
       - main
     paths:
-      - 'apps/hacker-news-client/**'
-      - '.github/workflows/hacker-news-client.yml'
-      - 'packages/**'
-      - 'turbo.json'
+      - "apps/hacker-news-client/**"
+      - ".github/workflows/hacker-news-client.yml"
+      - "packages/**"
+      - "turbo.json"
   workflow_dispatch:
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          version: 9
+          package_json_path: package.json
 
       - name: Get pnpm store directory
         shell: bash
@@ -75,4 +75,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

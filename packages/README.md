@@ -17,11 +17,13 @@ Packages in this directory can be imported by apps using the workspace protocol:
 ## Creating a New Package
 
 1. Create a new directory:
+
    ```bash
    mkdir packages/my-package
    ```
 
 2. Create `package.json`:
+
    ```json
    {
      "name": "@monorepo/my-package",
@@ -35,6 +37,7 @@ Packages in this directory can be imported by apps using the workspace protocol:
    ```
 
 3. Add to your app's dependencies:
+
    ```json
    {
      "dependencies": {
@@ -51,4 +54,3 @@ Packages in this directory can be imported by apps using the workspace protocol:
 - **@monorepo/utils**: Utility functions
 - **@monorepo/types**: Shared TypeScript types
 - **@monorepo/config**: Shared configuration (ESLint, TypeScript, etc.)
-

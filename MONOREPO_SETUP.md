@@ -14,16 +14,18 @@
 ## Next Steps:
 
 1. **Install dependencies:**
+
    ```bash
    pnpm install
    ```
 
 2. **Test the setup:**
+
    ```bash
    # Test building each app
    pnpm build:statistics
    pnpm build:hacker-news
-   
+
    # Test development servers
    pnpm dev:statistics
    pnpm dev:hacker-news

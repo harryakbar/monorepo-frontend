@@ -7,22 +7,26 @@ This monorepo has been restructured to support **5+ applications** efficiently. 
 ## Key Improvements
 
 ### 1. **Turborepo Integration**
+
 - Intelligent task orchestration and caching
 - Parallel execution of tasks
 - Only rebuilds what changed
 - Faster CI/CD pipelines
 
 ### 2. **Dynamic Scripts**
+
 - No more hardcoded `dev:app1`, `dev:app2`, etc.
 - Use `pnpm --filter <package-name>` or `turbo run dev --filter=<package-name>`
 - Works with any number of apps
 
 ### 3. **Workflow Generation**
+
 - Template-based workflow generation
 - Run `node scripts/create-workflow.js <app-name>` to create a new workflow
 - Consistent deployment configuration across all apps
 
 ### 4. **Shared Packages**
+
 - `packages/` directory for reusable code
 - Share components, utilities, types, and configs
 - Use workspace protocol: `"@monorepo/package": "workspace:*"`
@@ -30,6 +34,7 @@ This monorepo has been restructured to support **5+ applications** efficiently. 
 ## Structure Comparison
 
 ### Before (Not Scalable)
+
 ```
 package.json:
   "dev:statistics": "..."
@@ -40,6 +45,7 @@ package.json:
 ```
 
 ### After (Scalable)
+
 ```
 package.json:
   "dev": "turbo run dev"  ← Works for all apps automatically
@@ -53,17 +59,18 @@ package.json:
 
 ## Benefits
 
-| Feature | Before | After |
-|---------|--------|-------|
-| Adding new app | Modify package.json | Just create directory |
-| Build caching | None | Turborepo cache |
-| Workflow setup | Manual copy/paste | Auto-generated |
-| Shared code | Copy/paste | `packages/` directory |
-| Script maintenance | O(n) complexity | O(1) complexity |
+| Feature            | Before              | After                 |
+| ------------------ | ------------------- | --------------------- |
+| Adding new app     | Modify package.json | Just create directory |
+| Build caching      | None                | Turborepo cache       |
+| Workflow setup     | Manual copy/paste   | Auto-generated        |
+| Shared code        | Copy/paste          | `packages/` directory |
+| Script maintenance | O(n) complexity     | O(1) complexity       |
 
 ## Usage Examples
 
 ### Run specific app
+
 ```bash
 # Old way (doesn't scale)
 pnpm dev:statistics
@@ -75,11 +82,13 @@ turbo run dev --filter=@monorepo/statistics-section
 ```
 
 ### List all apps
+
 ```bash
 pnpm apps:list
 ```
 
 ### Generate workflow for new app
+
 ```bash
 node scripts/create-workflow.js my-new-app
 ```
@@ -93,4 +102,3 @@ Existing apps continue to work. The old scripts (`dev:statistics`, etc.) can be 
 1. Install Turborepo: `pnpm add -D -w turbo`
 2. Test the new structure: `pnpm build`
 3. Add more apps as needed - no configuration required!
-

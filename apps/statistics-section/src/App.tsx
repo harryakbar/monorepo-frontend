@@ -74,10 +74,10 @@ function App() {
                     {isLoading
                       ? "..."
                       : error || data === null
-                      ? "-"
-                      : data
-                          ?.find((item) => item.metric === "downloads")
-                          ?.value.toLocaleString()}
+                        ? "-"
+                        : data
+                            ?.find((item) => item.metric === "downloads")
+                            ?.value.toLocaleString()}
                   </span>
                   <span className="font-normal text-xl text-center text-neutral-600">
                     Downloads
@@ -90,10 +90,10 @@ function App() {
                     {isLoading
                       ? "..."
                       : error || data === null
-                      ? "-"
-                      : data
-                          ?.find((item) => item.metric === "paid_users")
-                          ?.value.toLocaleString()}
+                        ? "-"
+                        : data
+                            ?.find((item) => item.metric === "paid_users")
+                            ?.value.toLocaleString()}
                   </span>
                   <span className="font-normal text-xl text-center text-neutral-600">
                     Paid users
@@ -106,10 +106,10 @@ function App() {
                     {isLoading
                       ? "..."
                       : error || data === null
-                      ? "-"
-                      : data
-                          ?.find((item) => item.metric === "library_images")
-                          ?.value.toLocaleString()}
+                        ? "-"
+                        : data
+                            ?.find((item) => item.metric === "library_images")
+                            ?.value.toLocaleString()}
                   </span>
                   <span className="font-normal text-xl text-center text-neutral-600">
                     Images in library

@@ -42,11 +42,13 @@ pnpm install
 ## Development
 
 ### Run all apps
+
 ```bash
 pnpm dev
 ```
 
 ### Run specific app
+
 ```bash
 # Using pnpm filter (recommended for many apps)
 pnpm --filter <package-name> dev
@@ -56,6 +58,7 @@ turbo run dev --filter=<package-name>
 ```
 
 ### List all apps
+
 ```bash
 pnpm apps:list
 ```
@@ -63,11 +66,13 @@ pnpm apps:list
 ## Building
 
 ### Build all apps
+
 ```bash
 pnpm build
 ```
 
 ### Build specific app
+
 ```bash
 pnpm --filter <package-name> build
 ```
@@ -75,11 +80,13 @@ pnpm --filter <package-name> build
 ## Linting
 
 ### Lint all apps
+
 ```bash
 pnpm lint
 ```
 
 ### Lint specific app
+
 ```bash
 pnpm --filter <package-name> lint
 ```
@@ -87,6 +94,7 @@ pnpm --filter <package-name> lint
 ## Adding a New App
 
 1. **Create the app directory:**
+
    ```bash
    mkdir -p apps/my-new-app
    cd apps/my-new-app
@@ -98,6 +106,7 @@ pnpm --filter <package-name> lint
    - Ensure it has the standard scripts: `dev`, `build`, `lint`, etc.
 
 3. **Generate deployment workflow:**
+
    ```bash
    node scripts/create-workflow.js my-new-app
    ```
@@ -112,12 +121,14 @@ That's it! The app is now part of the monorepo and will be included in all works
 ## Adding a Shared Package
 
 1. **Create the package directory:**
+
    ```bash
    mkdir -p packages/my-shared-package
    cd packages/my-shared-package
    ```
 
 2. **Create package.json:**
+
    ```json
    {
      "name": "@monorepo/my-shared-package",
@@ -139,11 +150,13 @@ That's it! The app is now part of the monorepo and will be included in all works
 ## Deployment
 
 Each app has its own GitHub Actions workflow that:
+
 - Triggers only when the app's directory changes
 - Builds and deploys independently
 - Uses Turborepo caching for faster builds
 
 Workflows are auto-generated from the template. To regenerate:
+
 ```bash
 node scripts/create-workflow.js <app-directory-name>
 ```
@@ -155,7 +168,7 @@ node scripts/create-workflow.js <app-directory-name>
 ✅ **Independent**: Each app deploys independently  
 ✅ **Shared Code**: `packages/` directory for reusable code  
 ✅ **Automated**: Workflow generation script for new apps  
-✅ **Type-Safe**: Shared TypeScript configs and types  
+✅ **Type-Safe**: Shared TypeScript configs and types
 
 ## Tools
 
@@ -165,10 +178,10 @@ node scripts/create-workflow.js <app-directory-name>
 
 ## Scripts Reference
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Run all apps in development mode |
-| `pnpm build` | Build all apps |
-| `pnpm lint` | Lint all apps |
-| `pnpm apps:list` | List all apps in the monorepo |
+| Command                                 | Description                             |
+| --------------------------------------- | --------------------------------------- |
+| `pnpm dev`                              | Run all apps in development mode        |
+| `pnpm build`                            | Build all apps                          |
+| `pnpm lint`                             | Lint all apps                           |
+| `pnpm apps:list`                        | List all apps in the monorepo           |
 | `node scripts/create-workflow.js <app>` | Generate deployment workflow for an app |
