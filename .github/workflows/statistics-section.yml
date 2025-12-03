@@ -56,16 +56,28 @@ jobs:
       - name: Build Statistics Section
         run: pnpm --filter @monorepo/statistics-section build
 
+      - name: Download existing pages artifact
+        uses: actions/download-artifact@v4
+        id: download
+        continue-on-error: true
+        with:
+          name: pages-artifact
+          path: dist
+
       - name: Prepare deployment
         run: |
           # Deploy to subdirectory matching the app name
           # This allows multiple apps on the same GitHub Pages site
           mkdir -p dist/statistics-section
           cp -r apps/statistics-section/dist/* dist/statistics-section/
+          # List contents for debugging
+          echo "Deployment structure:"
+          find dist -type f -name "index.html" | head -10
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
+          name: pages-artifact
           path: "./dist"
 
   deploy:

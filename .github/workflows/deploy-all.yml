@@ -1,14 +1,14 @@
-name: Deploy {{APP_NAME}}
+name: Deploy All Apps
 
 on:
   push:
     branches:
       - main
     paths:
-      - "apps/{{APP_DIR}}/**"
-      - ".github/workflows/{{APP_DIR}}.yml"
+      - "apps/**"
       - "packages/**"
       - "turbo.json"
+      - ".github/workflows/deploy-all.yml"
   workflow_dispatch:
 
 jobs:
@@ -53,18 +53,30 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build {{APP_NAME}}
-        run: pnpm --filter {{APP_PACKAGE_NAME}} build
+      - name: Build all apps
+        run: pnpm build
 
       - name: Prepare deployment
         run: |
-          # Deploy to subdirectory matching the app name
-          # This allows multiple apps on the same GitHub Pages site
-          mkdir -p dist/{{APP_DIR}}
-          cp -r apps/{{APP_DIR}}/dist/* dist/{{APP_DIR}}/
-          # List contents for debugging
+          # Create dist directory and copy all apps to subdirectories
+          mkdir -p dist
+
+          # Get all app directories
+          for app_dir in apps/*/; do
+            app_name=$(basename "$app_dir")
+            if [ -d "$app_dir/dist" ] && [ -n "$(ls -A "$app_dir/dist" 2>/dev/null)" ]; then
+              echo "Deploying $app_name..."
+              mkdir -p "dist/$app_name"
+              cp -r "$app_dir/dist"/* "dist/$app_name/"
+            fi
+          done
+
+          # List deployment structure for debugging
           echo "Deployment structure:"
-          find dist -type f -name "index.html" | head -10
+          find dist -type f -name "index.html" || echo "No index.html files found"
+          echo ""
+          echo "Directory structure:"
+          tree dist -L 2 || find dist -type d | head -20
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

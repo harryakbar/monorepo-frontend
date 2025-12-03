@@ -149,11 +149,30 @@ That's it! The app is now part of the monorepo and will be included in all works
 
 ## Deployment
 
-Each app has its own GitHub Actions workflow that:
+### Unified Deployment (Recommended)
 
-- Triggers only when the app's directory changes
-- Builds and deploys independently
-- Uses Turborepo caching for faster builds
+A single workflow (`deploy-all.yml`) builds and deploys **all apps together**. This ensures:
+
+- ✅ All apps are always deployed together
+- ✅ No overwriting issues between separate deployments
+- ✅ Consistent deployment state
+- ✅ Automatic discovery of all apps in `apps/` directory
+
+The unified workflow triggers on:
+
+- Changes to any app in `apps/`
+- Changes to shared packages in `packages/`
+- Changes to `turbo.json`
+- Manual trigger via GitHub Actions UI
+
+**Access your apps at:**
+
+- `https://harryakbar.github.io/monorepo-frontend/statistics-section/`
+- `https://harryakbar.github.io/monorepo-frontend/hacker-news-client/`
+
+### Individual App Deployment (Optional)
+
+Individual workflows are also available for each app (`statistics-section.yml`, `hacker-news-client.yml`) for quick single-app deployments. However, **using the unified workflow is recommended** to avoid deployment conflicts.
 
 Workflows are auto-generated from the template. To regenerate:
 

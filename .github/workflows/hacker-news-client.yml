@@ -62,6 +62,9 @@ jobs:
           # This allows multiple apps on the same GitHub Pages site
           mkdir -p dist/hacker-news-client
           cp -r apps/hacker-news-client/dist/* dist/hacker-news-client/
+          # List contents for debugging
+          echo "Deployment structure:"
+          find dist -type f -name "index.html" | head -10
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
