@@ -13,12 +13,18 @@
     "apps:list": "node scripts/list-apps.js",
     "apps:dev": "pnpm --filter './apps/*' dev",
     "apps:build": "pnpm --filter './apps/*' build",
-    "apps:lint": "pnpm --filter './apps/*' lint"
+    "apps:lint": "pnpm --filter './apps/*' lint",
+    "test": "turbo run test"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "jsdom": "^25.0.1",
     "prettier": "^3.0.0",
     "turbo": "^2.6.1",
     "typescript": "~5.9.3",
+    "vitest": "^2.1.8",
     "wrangler": "^3.90.0"
   },
   "engines": {
