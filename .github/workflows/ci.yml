@@ -62,29 +62,20 @@ jobs:
       - name: Build
         run: pnpm build
 
-      # Deploy Testimonial Card
-      - name: Deploy Testimonial Card to Cloudflare Pages
+        # Deploy GFE Marketing
+      - name: Deploy GFE Marketing to Cloudflare Pages
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy apps/testimonial-card/dist --project-name=testimonial-card
+          command: pages deploy apps/gfe-marketing/dist --project-name=gfe-marketing
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
-      # Deploy Statistics Section
-      - name: Deploy Statistics Section to Cloudflare Pages
+      # Deploy GFE Apps
+      - name: Deploy GFE Apps to Cloudflare Pages
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy apps/statistics-section/dist --project-name=statistics-section
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      # Deploy Hacker News Client
-      - name: Deploy Hacker News Client to Cloudflare Pages
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy apps/hacker-news-client/dist --project-name=hacker-news-client
+          command: pages deploy apps/gfe-apps/dist --project-name=gfe-apps
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
