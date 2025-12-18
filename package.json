@@ -23,7 +23,7 @@
     "@vitest/ui": "^4.0.15",
     "jsdom": "^25.0.1",
     "prettier": "^3.0.0",
-    "turbo": "^2.6.1",
+    "turbo": "^2.6.3",
     "typescript": "~5.9.3",
     "vitest": "^2.1.8",
     "wrangler": "^3.90.0"
