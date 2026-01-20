@@ -1,17 +1,17 @@
-import { useState } from "react";
 import { format } from "date-fns";
-import { Copy, Check, Users, Share2 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Badge } from "./ui/badge";
+import { Check, Copy, Share2, Users } from "lucide-react";
+import { useState } from "react";
 import type { Trip } from "../utils/storage";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "./ui/card";
+import { Input } from "./ui/input";
 
 interface InvitationLinkProps {
   trip: Trip;
@@ -81,7 +81,7 @@ export function InvitationLink({ trip, onRegenerate }: InvitationLinkProps) {
               <Copy className="w-4 h-4" />
             )}
           </Button>
-          {navigator.share && (
+          {typeof navigator.share === "function" && (
             <Button onClick={handleShare} size="icon" variant="outline">
               <Share2 className="w-4 h-4" />
             </Button>

@@ -1,4 +1,4 @@
-import { format, addDays } from 'date-fns';
+import { format } from 'date-fns';
 
 interface Trip {
   id: string;
@@ -24,7 +24,6 @@ interface TimelineViewProps {
 export function TimelineView({ holidays, trips, compact }: TimelineViewProps) {
   // Create a timeline for the entire year
   const startDate = new Date(2026, 0, 1);
-  const endDate = new Date(2026, 11, 31);
   const totalDays = 365;
 
   const getPositionPercentage = (date: Date) => {

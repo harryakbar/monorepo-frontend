@@ -1,18 +1,17 @@
-import { useState, useEffect } from "react";
 import { format } from "date-fns";
-import { Plane, Users, Loader2, AlertCircle } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Button } from "./ui/button";
+import { AlertCircle, Loader2, Plane } from "lucide-react";
+import { useEffect, useState } from "react";
+import { findTripByInvitationToken, loadFromStorage, type Trip } from "../utils/storage";
+import { Alert, AlertDescription } from "./ui/alert";
 import { Badge } from "./ui/badge";
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
-import { findTripByInvitationToken, type Trip } from "../utils/storage";
-import { loadFromStorage } from "../utils/storage";
+import { Button } from "./ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "./ui/card";
 
 interface InvitationPageProps {
   token: string;

@@ -1,5 +1,4 @@
-import { format, addDays, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSameMonth, isSameDay, getDay } from 'date-fns';
-import { Badge } from './ui/badge';
+import { addDays, endOfMonth, endOfWeek, format, getDay, isSameDay, isSameMonth, startOfMonth, startOfWeek } from 'date-fns';
 
 interface Trip {
   id: string;
@@ -19,17 +18,6 @@ interface YearCalendarProps {
   holidays: Holiday[];
   trips: Trip[];
 }
-
-const TRIP_COLORS = [
-  'bg-blue-500',
-  'bg-purple-500',
-  'bg-pink-500',
-  'bg-green-500',
-  'bg-orange-500',
-  'bg-teal-500',
-  'bg-red-500',
-  'bg-indigo-500',
-];
 
 export function YearCalendar({ year, holidays, trips }: YearCalendarProps) {
   const months = Array.from({ length: 12 }, (_, i) => new Date(year, i, 1));
