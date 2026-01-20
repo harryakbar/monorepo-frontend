@@ -911,8 +911,6 @@ END:VCALENDAR`;
                     const leaveDays = hasDates
                       ? calculateWorkingDaysNeeded(trip.startDate!, trip.days)
                       : 0;
-                    const efficiency =
-                      hasDates && leaveDays > 0 ? trip.days / leaveDays : 0;
 
                     return (
                       <div
@@ -945,11 +943,6 @@ END:VCALENDAR`;
                               </div>
                             ) : null}
                           </div>
-                          {hasDates && (
-                            <Badge variant="secondary" className="shrink-0">
-                              {efficiency.toFixed(1)}x
-                            </Badge>
-                          )}
                         </div>
 
                         {hasDates && (
@@ -1358,7 +1351,7 @@ END:VCALENDAR`;
                   </h3>
                   <p className="text-sm text-blue-700">
                     Enter your destination and trip duration above, then we'll
-                    help you find the most efficient dates!
+                    help you find great dates that use fewer leave days.
                   </p>
                 </div>
               </div>

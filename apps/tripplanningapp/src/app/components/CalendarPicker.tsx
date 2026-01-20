@@ -39,6 +39,7 @@ interface BetterDateSuggestion {
   suggestedEndDate: Date;
   currentEfficiency: number;
   suggestedEfficiency: number;
+  currentLeaveDaysNeeded: number;
   suggestedScore: DateOptimization;
 }
 
@@ -112,6 +113,7 @@ export function CalendarPicker({
   ): BetterDateSuggestion | null => {
     const currentScore = getOptimizationScore(selectedDate);
     const currentEfficiency = currentScore?.efficiency || 0;
+    const currentLeaveDaysNeeded = currentScore?.leaveDaysNeeded ?? 0;
 
     // Check dates within ±5 days
     const nearbyDates: DateOptimization[] = [];
@@ -149,6 +151,7 @@ export function CalendarPicker({
         suggestedEndDate: addDays(best.date, tripDays - 1),
         currentEfficiency,
         suggestedEfficiency: best.efficiency,
+        currentLeaveDaysNeeded,
         suggestedScore: best,
       };
     }
@@ -515,13 +518,6 @@ export function CalendarPicker({
                       }{" "}
                       days
                     </span>{" "}
-                    • Efficiency:{" "}
-                    <span className="font-semibold">
-                      {getOptimizationScore(
-                        selectedStartDate,
-                      )!.efficiency.toFixed(1)}
-                      x
-                    </span>
                   </div>
                 </div>
               )}
@@ -548,13 +544,16 @@ export function CalendarPicker({
                       "EEE, MMM d",
                     )}
                   </strong>{" "}
-                  gives you{" "}
+                  needs{" "}
                   <strong className="text-green-700">
-                    {suggestion.suggestedEfficiency.toFixed(1)}x
-                    efficiency
+                    {suggestion.suggestedScore.leaveDaysNeeded} leave
+                    day
+                    {suggestion.suggestedScore.leaveDaysNeeded !== 1
+                      ? "s"
+                      : ""}
                   </strong>{" "}
-                  (vs {suggestion.currentEfficiency.toFixed(1)}x
-                  for your current selection)
+                  (vs {suggestion.currentLeaveDaysNeeded} for your
+                  current selection)
                 </p>
               </div>
 
