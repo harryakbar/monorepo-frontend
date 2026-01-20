@@ -11,7 +11,7 @@ const fetcher = (input: RequestInfo | URL, init?: RequestInit) =>
 function App() {
   const { error, isLoading } = useSWR(
     `https://hacker-news.firebaseio.com/v0/topstories.json`,
-    fetcher,
+    fetcher
   );
 
   if (isLoading) return <div>Loading...</div>;
