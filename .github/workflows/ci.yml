@@ -79,3 +79,12 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: pages deploy apps/gfe-apps/dist --project-name=gfe-apps
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # Deploy Storybook
+      - name: Deploy Storybook to Cloudflare Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: pages deploy apps/storybook/storybook-static --project-name=monorepo-frontend-storybook
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
