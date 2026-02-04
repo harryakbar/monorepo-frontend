@@ -59,6 +59,29 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Generate Coverage
+        run: pnpm test -- --coverage
+        continue-on-error: true
+
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./packages/ui/coverage/lcov.info,./apps/*/coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+
+      - name: Upload Coverage Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-reports
+          path: |
+            packages/ui/coverage/
+            apps/*/coverage/
+          retention-days: 30
+
       - name: Build
         run: pnpm build
 

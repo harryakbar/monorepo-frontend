@@ -1,0 +1,37 @@
+codecov:
+  token: # Set in GitHub Secrets as CODECOV_TOKEN
+  notify:
+    require_ci_to_pass: false
+
+coverage:
+  status:
+    project:
+      default:
+        target: 70%
+        threshold: 1%
+        base: auto
+        branches:
+          - main
+    patch:
+      default:
+        target: 70%
+        threshold: 1%
+        base: auto
+
+ignore:
+  - "**/*.test.{ts,tsx}"
+  - "**/*.stories.{ts,tsx}"
+  - "**/vitest.setup.ts"
+  - "**/vitest.config.ts"
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/.storybook/**"
+  - "**/stories/**"
+
+flags:
+  unittests:
+    paths:
+      - packages/ui/
+      - apps/*/
+
