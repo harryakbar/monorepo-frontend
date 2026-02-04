@@ -1,5 +1,5 @@
 codecov:
-  token: # Set in GitHub Secrets as CODECOV_TOKEN
+  token: ${{ secrets.CODECOV_TOKEN }}
   notify:
     require_ci_to_pass: false
 

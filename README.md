@@ -1,5 +1,7 @@
 # Monorepo
 
+[![codecov](https://codecov.io/gh/harryakbar/monorepo-frontend/branch/main/graph/badge.svg)](https://codecov.io/gh/harryakbar/monorepo-frontend)
+
 A scalable monorepo containing multiple Vite.js applications, each with independent deployments.
 
 ## Structure
