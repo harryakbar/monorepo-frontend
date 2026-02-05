@@ -60,7 +60,7 @@ jobs:
         run: pnpm test
 
       - name: Generate Coverage
-        run: pnpm test -- --coverage
+        run: pnpm --filter '@repo/ui' test:coverage
         continue-on-error: true
 
       - name: Upload Coverage to Codecov

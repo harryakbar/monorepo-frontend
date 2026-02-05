@@ -14,7 +14,8 @@
     "apps:dev": "pnpm --filter './apps/*' dev",
     "apps:build": "pnpm --filter './apps/*' build",
     "apps:lint": "pnpm --filter './apps/*' lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",

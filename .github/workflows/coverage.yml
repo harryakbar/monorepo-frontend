@@ -45,7 +45,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run tests with coverage
-        run: pnpm test -- --coverage
+        run: pnpm --filter '@repo/ui' test:coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
