@@ -45,7 +45,11 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run tests with coverage
-        run: pnpm --filter '@repo/ui' test:coverage
+        run: |
+          pnpm --filter './packages/ui' test:coverage || true
+          pnpm --filter './apps/gfe-apps' test:coverage || true
+          pnpm --filter './apps/gfe-marketing' test:coverage || true
+          pnpm --filter './apps/tripplanningapp' test:coverage || true
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -53,7 +57,9 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: |
             ./packages/ui/coverage/lcov.info
-            ./apps/*/coverage/lcov.info
+            ./apps/gfe-apps/coverage/lcov.info
+            ./apps/gfe-marketing/coverage/lcov.info
+            ./apps/tripplanningapp/coverage/lcov.info
           flags: unittests
           name: codecov-monorepo
           fail_ci_if_error: false
@@ -66,6 +72,18 @@ jobs:
           if [ -f "packages/ui/coverage/coverage-summary.json" ]; then
             echo "### UI Package Coverage" >> $GITHUB_STEP_SUMMARY
             cat packages/ui/coverage/coverage-summary.json | grep -A 5 '"total"' >> $GITHUB_STEP_SUMMARY || true
+          fi
+          if [ -f "apps/gfe-apps/coverage/coverage-summary.json" ]; then
+            echo "### GFE Apps Coverage" >> $GITHUB_STEP_SUMMARY
+            cat apps/gfe-apps/coverage/coverage-summary.json | grep -A 5 '"total"' >> $GITHUB_STEP_SUMMARY || true
+          fi
+          if [ -f "apps/gfe-marketing/coverage/coverage-summary.json" ]; then
+            echo "### GFE Marketing Coverage" >> $GITHUB_STEP_SUMMARY
+            cat apps/gfe-marketing/coverage/coverage-summary.json | grep -A 5 '"total"' >> $GITHUB_STEP_SUMMARY || true
+          fi
+          if [ -f "apps/tripplanningapp/coverage/coverage-summary.json" ]; then
+            echo "### Trip Planning App Coverage" >> $GITHUB_STEP_SUMMARY
+            cat apps/tripplanningapp/coverage/coverage-summary.json | grep -A 5 '"total"' >> $GITHUB_STEP_SUMMARY || true
           fi
 
       - name: Upload coverage artifacts

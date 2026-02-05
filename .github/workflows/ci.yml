@@ -60,14 +60,22 @@ jobs:
         run: pnpm test
 
       - name: Generate Coverage
-        run: pnpm --filter '@repo/ui' test:coverage
+        run: |
+          pnpm --filter './packages/ui' test:coverage || true
+          pnpm --filter './apps/gfe-apps' test:coverage || true
+          pnpm --filter './apps/gfe-marketing' test:coverage || true
+          pnpm --filter './apps/tripplanningapp' test:coverage || true
         continue-on-error: true
 
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./packages/ui/coverage/lcov.info,./apps/*/coverage/lcov.info
+          files: |
+            ./packages/ui/coverage/lcov.info
+            ./apps/gfe-apps/coverage/lcov.info
+            ./apps/gfe-marketing/coverage/lcov.info
+            ./apps/tripplanningapp/coverage/lcov.info
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: false
