@@ -33,5 +33,7 @@ flags:
   unittests:
     paths:
       - packages/ui/
-      - apps/*/
+      - apps/gfe-apps/
+      - apps/gfe-marketing/
+      - apps/tripplanningapp/
 
